@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span>Legg til barn i barnehagen:</span>
+    <input type="number" id="ageInput">
+    <button onclick="add()">Legg til</button>
+    <button onclick="countKlarforskolen()">Skjekk hvor mange som er klar for skole</button>
+    <div id="result"></div>
+
+    <script>
+        // array med aldre på de som allerede er i barnehagen.
+        const alder = [1, 2, 3, 4, 5, 6, 7];
+
+        function add() {
+            // hent input
+            const ageInput = document.getElementById("ageInput").value;
+
+            // sjekk at det er ett nummer som skrives inn ikke bokstaver/ andre tegn
+            const age = parseInt(ageInput);
+
+            // sjekk at om tallet er over skole alder
+            if (!isNaN(age)) {
+
+                // legg nytt tall til array
+                alder.push(age);
+
+                // tøm tekst boks etter det er lagt til.
+                document.getElementById("ageInput").value = "";
+
+                alert("Barnet er lagt til i barnehagen.");
+            } else {
+                alert("Vennligst skriv inn en gyldig alder.");
+            }
+        }
+
+        function countKlarforskolen() {
+            let count = 0;
+            for (let i = 0; i < alder.length; i++) {
+                if (alder[i] >= 6) {
+                    count++;
+                }
+            }
+
+            // vis resultat
+            document.getElementById("result").innerHTML = `Antall barn klare for skole: ${count}`;
+        }
+
+        // teller hvor mange over 6 i utgangs punktet
+        countKlarforskolen();
+    </script>
+</body>
+
+</html>
